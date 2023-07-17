@@ -45,13 +45,7 @@
         // Show message when user added
         echo "Mahasiswa sudah ditambahkan. <a href='mahasiswa.php'>Lihat</a>";
     
-        fuction cari($keyword){
-            $query = "SELECT * FROM mahasiswa.php
-            WHERE
-            nama = '$keyword'
-            ";
-            return query($query);
-        }
+        
     }
     ?>
 </body>

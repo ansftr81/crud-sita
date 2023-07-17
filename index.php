@@ -27,7 +27,7 @@
         <a href="mahasiswa.php">MAHASISWA </a></li>
       
         <li class= "li-navbar">
-          <a href="tugas_akhir.php">TUGAS AKHIR</a></li>
+          <a href="tugasakhir.php">TUGAS AKHIR</a></li>
 
       <li class= "li-navbar">
           <a href="logout.php">LOGOUT</a></li>

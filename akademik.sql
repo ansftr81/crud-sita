@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2023 at 05:21 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Waktu pembuatan: 17 Jul 2023 pada 19.47
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -35,17 +35,18 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `dosen`
+-- Dumping data untuk tabel `dosen`
 --
 
 INSERT INTO `dosen` (`id`, `nidn`, `nama`, `nohp`) VALUES
 (13, '7', 'GF', '81234567'),
-(14, '1', 'roy a', '0867890');
+(14, '1', 'roy a', '0867890'),
+(15, '56789', 'arif Rahman', '081389234230');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -56,19 +57,19 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `mahasiswa`
+-- Dumping data untuk tabel `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `email`) VALUES
 (6, '345', 'FDAFDG', 'fitri.anisah2001@gmail.co'),
 (7, '888888', 'dfdghfy', 'arifrahman2728@gmail.com'),
-(8, '20020037', 'FITRI ANISAH', 'arifrahman2728@gmail.com'),
-(9, '2345', 'ANISAH RAHMA', 'nisa@gmail.com');
+(9, '2345', 'ANISAH RAHMA', 'nisa@gmail.com'),
+(10, '21040070', 'ADELIA MAHARANI', 'admin@sukampus.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ta`
+-- Struktur dari tabel `ta`
 --
 
 CREATE TABLE `ta` (
@@ -79,11 +80,10 @@ CREATE TABLE `ta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `ta`
+-- Dumping data untuk tabel `ta`
 --
 
 INSERT INTO `ta` (`id`, `judul`, `mahasiswa`, `pembimbing`) VALUES
-(0, 'programming', 1, 5),
 (1, '0', 1, 1),
 (2, 'web', 1, 2),
 (3, 'web', 1, 6),
@@ -92,7 +92,28 @@ INSERT INTO `ta` (`id`, `judul`, `mahasiswa`, `pembimbing`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `tugas_akhir`
+--
+
+CREATE TABLE `tugas_akhir` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(50) NOT NULL,
+  `id_mahasiswa` int(11) NOT NULL,
+  `id_dosen` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tugas_akhir`
+--
+
+INSERT INTO `tugas_akhir` (`id`, `judul`, `id_mahasiswa`, `id_dosen`) VALUES
+(1, 'sistem absensi karyawan', 6, 13),
+(2, 'Sistem Pakar Stres', 9, 14);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -103,7 +124,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`) VALUES
@@ -114,50 +135,75 @@ INSERT INTO `user` (`id`, `username`, `password`, `nama`) VALUES
 --
 
 --
--- Indexes for table `dosen`
+-- Indeks untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mahasiswa`
+-- Indeks untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ta`
+-- Indeks untuk tabel `ta`
 --
 ALTER TABLE `ta`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `tugas_akhir`
+--
+ALTER TABLE `tugas_akhir`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_mahasiswa` (`id_mahasiswa`,`id_dosen`),
+  ADD KEY `id_dosen` (`id_dosen`);
+
+--
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `dosen`
+-- AUTO_INCREMENT untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `mahasiswa`
+-- AUTO_INCREMENT untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `tugas_akhir`
+--
+ALTER TABLE `tugas_akhir`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `tugas_akhir`
+--
+ALTER TABLE `tugas_akhir`
+  ADD CONSTRAINT `tugas_akhir_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tugas_akhir_ibfk_2` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
